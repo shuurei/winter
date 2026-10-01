@@ -72,6 +72,11 @@ def enableProguardInReleaseBuilds = false
  */
 def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
+def now = new Date()
+
+def buildVersion = now.format("yy.MM.dd")
+def buildNumber = now.format("HHmmss").toInteger()
+
 android {
     ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -82,8 +87,8 @@ android {
         applicationId "com.winter"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode buildNumber
+        versionName "${buildVersion} (${buildNumber})"
     }
     signingConfigs {
         debug {
